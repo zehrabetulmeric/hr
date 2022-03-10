@@ -7,17 +7,10 @@ const Search = require("../../assets/search.png");
 const Exit = require("../../assets/exit.png");
 
 
-const SearchInput = ({ placeholder}) => {
+const SearchInput = ({ placeholder, onChangeText, value}) => {
 
-    const [value, setValue] = useState("")
-    const [isFocus, setFocus] = useState(false);
-
-    const onCancel = () => {
-        setFocus(false)
-        Keyboard.dismiss()
-        setValue("")
-    }
-
+    
+    
     return (
         <View style={styles.container}>
 
@@ -32,19 +25,10 @@ const SearchInput = ({ placeholder}) => {
                 style={styles.input}
                 placeholder={placeholder}
                 autoCapitalize="none"
-                onFocus={() => setFocus(true)}
                 value={value}
-                onChangeText={text => setValue(text)}
+                onChangeText={onChangeText}
             />
-            { isFocus && (
-                <TouchableOpacity onPress={onCancel}>
-                <Image
-                    source={Exit}
-                    style={styles.exit}
-                />
-            </TouchableOpacity>
-            )}
-
+           
         </View>
     )
 }

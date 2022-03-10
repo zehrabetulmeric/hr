@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, ScrollView, Button, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TextInput, ActivityIndicator } from 'react-native'
 
 import AddButton from '../components/AddButton';
 import BackButton from '../components/BackButton';
@@ -9,11 +9,11 @@ import SearchInput from '../components/SearchInput';
 
 const zbm = require("../../assets/zbm.jpg");
 
-const PersonelScreen = ({ navigation }) => {
+const PersonelScreen = ({ navigation, personel }) => {
 
     const [personels, setPersonels] = useState([]);
     const [isLoading, setLoading] = useState(false);
-    const [search, setSearch] = useState('');
+    
 
     const fetchPersonels = async () => {
         const personelCollection = await firestore().collection('personels').get()
@@ -24,6 +24,20 @@ const PersonelScreen = ({ navigation }) => {
             })
         )
     }
+    
+    const searchPersonels = async (value) => {
+
+        const personelCollection = await firestore().collection('personels').get()
+        console.log(personelCollection.docs);
+        const searchData = personels.filter((personel) => {
+            return personel.name.toLowerCase().includes(value.toLowerCase());
+        });
+
+        setPersonels(searchData)
+       
+    }
+
+
     useEffect(() => {
 
         setLoading(true);
@@ -48,6 +62,7 @@ const PersonelScreen = ({ navigation }) => {
         })
 
     }, [])
+
     if (isLoading) {
         return (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -73,8 +88,11 @@ const PersonelScreen = ({ navigation }) => {
             <ScrollView>
 
                 <SearchInput 
+                   
                     placeholder="Search Personel"
-                    
+                    onChangeText = {(value) => {
+                        searchPersonels(value)
+                    }}
                 />
 
 

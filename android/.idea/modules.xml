@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AwesomeProject.iml" filepath="$PROJECT_DIR$/.idea/modules/AwesomeProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AwesomeProject.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AwesomeProject.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1790472900/AwesomeProject.react-native-firebase_app.iml" filepath="$PROJECT_DIR$/.idea/modules/1790472900/AwesomeProject.react-native-firebase_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/461698977/AwesomeProject.react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/461698977/AwesomeProject.react-native-gesture-handler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1899019380/AwesomeProject.react-native-masked-view_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/1899019380/AwesomeProject.react-native-masked-view_masked-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1962453962/AwesomeProject.react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/1962453962/AwesomeProject.react-native-safe-area-context.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1213751394/AwesomeProject.react-native-screens.iml" filepath="$PROJECT_DIR$/.idea/modules/1213751394/AwesomeProject.react-native-screens.iml" />
+    </modules>
+  </component>
+</project>

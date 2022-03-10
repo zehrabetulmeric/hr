@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "691101573617",
+    "project_id": "hrfirebase-15dcd",
+    "storage_bucket": "hrfirebase-15dcd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:691101573617:android:108d44638e20d7f7362450",
+        "android_client_info": {
+          "package_name": "com.awesomeproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "691101573617-5f971mk7ni41p8rludkqrvvl2s5o8pgm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB22xbALqUiLaVwMmDbWpu8Ss3QyNvCc1w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "691101573617-5f971mk7ni41p8rludkqrvvl2s5o8pgm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
