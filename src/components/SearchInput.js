@@ -7,7 +7,7 @@ const Search = require("../../assets/search.png");
 const Exit = require("../../assets/exit.png");
 
 
-const SearchInput = ({ placeholder, onChangeText, value}) => {
+const SearchInput = ({ placeholder, onSearch, }) => {
 
     
     
@@ -25,8 +25,7 @@ const SearchInput = ({ placeholder, onChangeText, value}) => {
                 style={styles.input}
                 placeholder={placeholder}
                 autoCapitalize="none"
-                value={value}
-                onChangeText={onChangeText}
+                onChangeText={onSearch}
             />
            
         </View>

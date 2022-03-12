@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, ScrollView, TextInput, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, TextInput, ActivityIndicator, FlatList } from 'react-native'
 
 import AddButton from '../components/AddButton';
 import BackButton from '../components/BackButton';
@@ -10,41 +10,39 @@ import SearchInput from '../components/SearchInput';
 const zbm = require("../../assets/zbm.jpg");
 
 const PersonelScreen = ({ navigation, personel }) => {
-
-    const [personels, setPersonels] = useState([]);
+    const [personels, setPersonels] = useState(personels);
     const [isLoading, setLoading] = useState(false);
-    
+
+    const renderCard = ({ item }) => 
+                    <PersonelCard
+                        key={item.id}
+                        header={item.name + ' ' + item.surname}
+                        text={item.department}
+                    />
+
+    const handleSearch = text => {
+       const filteredPersonel = personels.filter (personel => {
+            const searchedText = text.toLowerCase();
+            const currentName = personel.name.toLowerCase();
+
+            return currentName.indexOf(searchedText) > -1;
+       });
+       setPersonels(filteredPersonel);
+    }
 
     const fetchPersonels = async () => {
         const personelCollection = await firestore().collection('personels').get()
-        console.log(personelCollection.docs);
         setPersonels(
             personelCollection.docs.map((doc) => {
                 return { ...doc.data(), id: doc.id }
             })
         )
     }
-    
-    const searchPersonels = async (value) => {
-
-        const personelCollection = await firestore().collection('personels').get()
-        console.log(personelCollection.docs);
-        const searchData = personels.filter((personel) => {
-            return personel.name.toLowerCase().includes(value.toLowerCase());
-        });
-
-        setPersonels(searchData)
-       
-    }
-
 
     useEffect(() => {
-
         setLoading(true);
         fetchPersonels()
-
         firestore().collection('personels').where("type", "==", "personel").onSnapshot(querySnapshot => {
-
             querySnapshot.docChanges().forEach(change => {
                 if (change.type == 'added') {
                     console.log("New personel added.")
@@ -55,12 +53,10 @@ const PersonelScreen = ({ navigation, personel }) => {
                 if (change.type == 'modified') {
                     console.log("New personel modified.")
                 }
-
-                fetchPersonels()
+                
                 setLoading(false);
             })
         })
-
     }, [])
 
     if (isLoading) {
@@ -70,7 +66,6 @@ const PersonelScreen = ({ navigation, personel }) => {
             </View>
         );
     }
-
     return (
         <View style={styles.container}>
 
@@ -85,29 +80,20 @@ const PersonelScreen = ({ navigation, personel }) => {
                 <Text style={styles.head}>Personel List</Text>
             </View>
 
-            <ScrollView>
+            <SearchInput
+                placeholder="Search Personel"
+                onSearch={handleSearch}
+            />
 
-                <SearchInput 
-                   
-                    placeholder="Search Personel"
-                    onChangeText = {(value) => {
-                        searchPersonels(value)
-                    }}
+            <View style={styles.cardContainer}>
+                <FlatList
+                style={{}}
+                    keyExtractor={item => item.id}
+                    data={personels}
+                    renderItem={renderCard}
+                    ItemSeparatorComponent={() => <View style={styles.seperator} />}
                 />
-
-
-                <View style={styles.cardContainer}>
-                    {
-                        personels.map(personel => {
-                            return <PersonelCard
-                                key={personel.id}
-                                header={personel.name + ' ' + personel.surname}
-                                text={personel.department}
-                            />
-                        })
-                    }
-                </View>
-            </ScrollView>
+            </View>
 
             <View style={styles.addButtonContainer}>
                 <AddButton
@@ -119,38 +105,39 @@ const PersonelScreen = ({ navigation, personel }) => {
 
         </View>
     );
-
 }
-
-
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'beige',
-
+        width: '100%',
+        
     },
 
     cardContainer: {
+        
         alignItems: 'center',
-        flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-evenly',
+        flex: 1,
+        width: '100%',
+        
+    },
 
-
+    seperator: {
+        borderWidth: 1,
+        borderColor:'#9088D4'
     },
 
     addButtonContainer: {
-
         position: 'absolute',
         bottom: 15,
         right: 15,
         alignSelf: 'flex-end'
-
     },
 
     backButtonContainer: {
-
         position: 'absolute',
         left: 15,
         justifyContent: 'center',
@@ -167,14 +154,15 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: '#9088D4',
         marginBottom: 10
-
     },
 
     head: {
         fontSize: 22,
         fontStyle: 'normal',
-        color: 'beige'
+        color: 'beige',
+        
     },
 })
+
 export default PersonelScreen;
 

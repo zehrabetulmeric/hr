@@ -16,9 +16,9 @@ const PersonelCard = ({ source, onPress, text, header }) => {
                 <Text style={styles.personelName}>{header}</Text>
                 <Text style={styles.personelDetail}>{text}</Text>
                 <TouchableOpacity onPress={onPress}>
-                    <Text style={styles.moreText}>
+                    {/* <Text style={styles.moreText}>
                         More
-                    </Text>
+                    </Text> */}
                 </TouchableOpacity> 
                 
             </View>
@@ -28,58 +28,46 @@ const PersonelCard = ({ source, onPress, text, header }) => {
 
 const styles = StyleSheet.create({
     container: {
-        // backgroundColor: 'pink',
-        height: 180,
-        width: '45%',
-        borderRadius: 30,
-        borderColor:  '#9088D4',
-        borderWidth: 3,
-        marginBottom: 20,   
+        height: 100,
+        flexDirection:"row",
+        flex: 1,
+        width: '100%'
     },
 
     imageContainer: {
-        height: 85,
-        justifyContent: 'center',
+        width: '30%',
         alignItems: 'center',
-        backgroundColor: '#EAA471',
-        width: '100%',
-        borderTopEndRadius: 27,
-        borderTopStartRadius: 27
+        justifyContent: 'center'
     },
 
     image: {
         width: 66,
         height: 66,
-        backgroundColor: 'beige',
+        backgroundColor: 'pink',
         borderRadius: 999,
-        borderColor: 'black',
-        
+       
     },
 
     content: {
-        height: 89,
-        alignItems: 'center',
-        borderBottomLeftRadius: 27,
-        borderBottomRightRadius: 27,
-        backgroundColor: 'pink',
-        justifyContent: 'space-evenly',
+        width: '70%',
+        alignItems: 'flex-start',
+        backgroundColor: 'beige',
+        justifyContent: 'center',
     },
 
     personelName: {
-        
         color: '#252A34',
-        fontSize: 16
+        fontSize: 18,
+        fontWeight: 'bold'
     },
 
     personelDetail: {
-        fontSize: 12,
+        fontSize: 14,
         
     },
 
     moreText: {
-        
         fontSize: 13,
-        
     }
 
 })
