@@ -1,35 +1,25 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import React from 'react';
-import BackButton from './BackButton';
-const back = require("../../assets/leftArrow.png");
-const Header = ({onPress,  text }) => {
+import React from "react";
+import { View, Text, StyleSheet } from 'react-native'
+
+
+import BackButton from "./BackButton";
+
+const Header = ({ text, onBack }) => {
     return (
-        <View style={styles.header} >
-        <TouchableOpacity  style={styles.backButtonContainer} >
-        <Image
-        style={styles.image}
-        source={back}
-        onPress={onPress}
-      />
-      
-        </TouchableOpacity>
-            
-            
-    
-   
-        
-            <Text style={styles.head}>{text}</Text>
-            
+        <View style={styles.container}>
+            <View style={styles.header} >
+                <View style={styles.backButtonContainer} >
+                    <BackButton
+                        onPress={onBack}
+                    />
+                </View>
+                <Text style={styles.head}>{text}</Text>
+            </View>
         </View>
-
-
-    );
-};
+    )
+}
 
 const styles = StyleSheet.create({
-
-
-
     header: {
         flexDirection: 'row',
         alignItems: 'center',
@@ -38,21 +28,14 @@ const styles = StyleSheet.create({
         height: 70,
         width: '100%',
         backgroundColor: '#9088D4',
-        marginBottom: 20,
-        
-
+        marginBottom: 10
     },
 
     head: {
         fontSize: 22,
         fontStyle: 'normal',
-        color: 'beige'
-    },
-
-    image: {
-        height: 40,
-        width: 40,
-       
+        color: 'beige',
+        
     },
 
     backButtonContainer: {
@@ -61,14 +44,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: 70,
         alignSelf: 'flex-start'
-    }
-
-
-
-
-
-
+    },
 })
-
 
 export default Header;

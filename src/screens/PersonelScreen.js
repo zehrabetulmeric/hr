@@ -2,16 +2,20 @@ import firestore from '@react-native-firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, ScrollView, TextInput, ActivityIndicator, FlatList } from 'react-native'
 
-import AddButton from '../components/AddButton';
-import BackButton from '../components/BackButton';
+import AddButton from '../components/addButton';
+import Header from '../components/Header';
 import PersonelCard from '../components/PersonelComponents/PersonelCard';
-import SearchInput from '../components/SearchInput';
+import SearchInput from '../components/searchInput';
 
 const zbm = require("../../assets/zbm.jpg");
 
 const PersonelScreen = ({ navigation, personel }) => {
     const [personels, setPersonels] = useState(personels);
     const [isLoading, setLoading] = useState(false);
+
+    const onBack = () => {
+        navigation.navigate('home');
+ }
 
     const renderCard = ({ item }) => 
                     <PersonelCard
@@ -69,16 +73,10 @@ const PersonelScreen = ({ navigation, personel }) => {
     return (
         <View style={styles.container}>
 
-            <View style={styles.header} >
-                <View style={styles.backButtonContainer} >
-                    <BackButton
-                        onPress={() => {
-                            navigation.navigate('home');
-                        }}
-                    />
-                </View>
-                <Text style={styles.head}>Personel List</Text>
-            </View>
+           <Header 
+               text="Personel List"
+               onBack={onBack}
+           />
 
             <SearchInput
                 placeholder="Search Personel"
@@ -137,31 +135,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end'
     },
 
-    backButtonContainer: {
-        position: 'absolute',
-        left: 15,
-        justifyContent: 'center',
-        height: 70,
-        alignSelf: 'flex-start'
-    },
 
-    header: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        alignContent: 'center',
-        justifyContent: 'center',
-        height: 70,
-        width: '100%',
-        backgroundColor: '#9088D4',
-        marginBottom: 10
-    },
-
-    head: {
-        fontSize: 22,
-        fontStyle: 'normal',
-        color: 'beige',
-        
-    },
 })
 
 export default PersonelScreen;

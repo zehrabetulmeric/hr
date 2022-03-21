@@ -32,7 +32,7 @@ const PersonelForm = ({ navigation }) => {
 
     const updateForm = () => {
         setPersonel ({
-            name: '',
+        name: '',
         surname: '',
         school: '',
         department: '',
