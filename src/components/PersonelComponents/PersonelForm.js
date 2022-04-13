@@ -10,7 +10,7 @@ import BackButton from '../BackButton';
 const PersonelForm = ({ navigation }) => {
 
     const [personel, setPersonel] = useState({
-        name: '',
+        name: ' ',
         surname: '',
         school: '',
         department: '',

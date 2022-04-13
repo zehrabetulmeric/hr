@@ -17,7 +17,9 @@ import PermissionScreen from './src/screens/PermissionScreen';
 import ActivityScreen from './src/screens/ActivityScreen';
 import CalenderScreen from './src/screens/CalenderScreen';
 import PersonelForm from './src/components/PersonelComponents/PersonelForm';
-
+import ModalComponent from './src/components/ActivityComponents/modal';
+import ActivityCard from './src/components/ActivityComponents/activityCard';
+import PersonelDetail from './src/components/PersonelComponents/PersonelDetail';
 
 
 const Stack = createNativeStackNavigator();
@@ -67,7 +69,7 @@ export default function App() {
   <SafeAreaView flex={1}>
     <NavigationContainer >
       <Stack.Navigator>
-        {/* <Stack.Screen name="auth" component={AuthStack} options={{ headerShown: false }} /> */}
+        {/* <Stack.Screen name="auth" component={AuthStack} options={{ headerShown: false }} />  */}
 
         <Stack.Screen name="home" component={TabNavigator} options={{ headerShown: false }}  />
         <Stack.Screen name="MainScreen" component={MainScreen} options={{ headerShown: false }} />
@@ -78,6 +80,8 @@ export default function App() {
         <Stack.Screen name="CalenderScreen" component={CalenderScreen} options={{ headerShown: false }} />
         <Stack.Screen name="PersonelForm" component={PersonelForm} options={{ headerShown: false }} />
         <Stack.Screen name="detail" component={DetailScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="ActivityCard" component={ActivityCard} options={{ headerShown: false }} />
+        <Stack.Screen name="PersonelDetail" component={PersonelDetail} options={{ headerShown: false }} />
       </Stack.Navigator>
       {/* <FlashMessage position="top" /> */}
     </NavigationContainer>

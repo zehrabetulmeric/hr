@@ -1,13 +1,20 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, Touchable, TouchableOpacity } from 'react-native'
 
-const PersonelCard = ({ source, onPress, text, header }) => {
+const profile = require("../../../assets/profile.png");
+
+const PersonelCard = ({ source, onPress, onDetail, text, header }) => {
     return (
-        <View style={styles.container}>
+        
+        <TouchableOpacity
+        onPress={onDetail}
+        style={styles.container}>
+            
             <View style={styles.imageContainer}>
+        
             <Image
                     style={styles.image}
-                    source={source}
+                    source={profile}
                 />
             </View>
 
@@ -22,7 +29,8 @@ const PersonelCard = ({ source, onPress, text, header }) => {
                 </TouchableOpacity> 
                 
             </View>
-        </View>
+            
+        </TouchableOpacity >
     )
 }
 

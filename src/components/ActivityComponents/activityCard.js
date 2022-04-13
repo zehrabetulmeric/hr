@@ -1,76 +1,87 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, Touchable, TouchableOpacity, TextInput } from 'react-native';
+import { useState } from 'react';
+const check = require("../../../assets/tasknotcheck.png")
+const check2 = require("../../../assets/taskcheck.png")
+const edit = require("../../../assets/pen.png")
 
-const addButton = require("../../assets/addButton.png");
-const ActivityCard = ({ onPress, text, header }) => {
+
+const ActivityCard = ({ onPress, text, onChange, source, detail }) => {
+    const [image, setImage] = useState(check);
+
+    const handleChange = () => {
+        if(image == check) { 
+        return setImage(check2)
+    }
+        return setImage(check)
+    }
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.imageContainer}>
-            
-            <Image
-        style={styles.image}
-        source={addButton}
-        
-      />
+            <TouchableOpacity 
+            onPress={handleChange}
+            style={styles.imageContainer}>
+                <Image
+                    style={styles.checkImage}
+                    source={image}
+                />
             </TouchableOpacity>
 
             <View style={styles.content}>
-                <Text>Buraya girdiğimiz şey gelicek</Text>
+                <Text style={styles.detail}>{text}</Text>
             </View>
-
-            <TouchableOpacity style={styles.imageContainer}>
-                
-            </TouchableOpacity>
-
-
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        height: 100,
+        height: 80,
         flexDirection: 'row',
-       
         width: '100%',
-        backgroundColor: 'red'
+        paddingLeft: 30,
+        paddingRight: 30
     },
 
     imageContainer: {
-        width: '30%',
+        width: '20%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        paddingRight: 15
     },
 
-    image: {
-        width: 66,
-        height: 66,
-        backgroundColor: 'pink',
-        borderRadius: 999,
+    checkImage: {
+        width: 40,
+        height: 40,
 
+    },
+
+    editImage: {
+        width: 40,
+        height: 40,
+        
     },
 
     content: {
-        width: '70%',
+        width: '80%',
         alignItems: 'flex-start',
-        backgroundColor: 'beige',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
     },
 
-    personelName: {
+    head: {
+        alignSelf: 'center'
+    },
+
+    header: {
         color: '#252A34',
-        fontSize: 18,
-        fontWeight: 'bold'
+        fontSize: 16,
+        fontWeight: 'bold',
+        alignSelf: 'center'
     },
 
-    personelDetail: {
+    detail: {
         fontSize: 14,
-
+        alignSelf: 'center'
     },
-
-    moreText: {
-        fontSize: 13,
-    }
 
 })
 

@@ -17,12 +17,21 @@ const PersonelScreen = ({ navigation, personel }) => {
         navigation.navigate('home');
  }
 
-    const renderCard = ({ item }) => 
-                    <PersonelCard
+ const onDetail = (item) => {
+    navigation.navigate('PersonelDetail', {item: item});
+}
+
+    const renderCard = ({ item }) =>  
+        <PersonelCard
+                        onDetail={() => navigation.navigate('PersonelDetail', {item: item})}
                         key={item.id}
                         header={item.name + ' ' + item.surname}
                         text={item.department}
+                        
                     />
+                   
+    
+                    
 
     const handleSearch = text => {
        const filteredPersonel = personels.filter (personel => {
@@ -90,7 +99,9 @@ const PersonelScreen = ({ navigation, personel }) => {
                     data={personels}
                     renderItem={renderCard}
                     ItemSeparatorComponent={() => <View style={styles.seperator} />}
+                    
                 />
+                
             </View>
 
             <View style={styles.addButtonContainer}>
